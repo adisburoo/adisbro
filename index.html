@@ -12,7 +12,8 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body {
-            background-color: #05070a;
+            /* Głęboki, chłodny grafit (baza motywu) */
+            background-color: #0b1120;
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -23,47 +24,38 @@
             overflow: hidden;
         }
 
-        /* === TŁO KSĘŻYCOWE === */
-        .bg-nebula {
+        /* === MOTYW KSĘŻYCOWY (Czysty CSS) === */
+        
+        /* 1. Miękka, srebrzysta poświata z góry */
+        .moon-glow {
             position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: 
-                radial-gradient(circle at 50% -10%, rgba(120, 150, 200, 0.15) 0%, transparent 60%),
-                radial-gradient(circle at 10% 90%, rgba(60, 80, 120, 0.2) 0%, transparent 50%),
-                radial-gradient(circle at 90% 80%, rgba(40, 60, 100, 0.15) 0%, transparent 50%);
-            z-index: -3;
-        }
-        .bg-moon {
-            position: fixed;
-            bottom: -20vh;
+            top: -20vh;
             left: 50%;
             transform: translateX(-50%);
-            width: 120vw;
-            height: 60vh;
-            max-width: 1200px;
-            border-radius: 50% 50% 0 0;
-            background: radial-gradient(ellipse at bottom, rgba(180, 200, 230, 0.15) 0%, rgba(10, 15, 25, 0) 70%);
+            width: 150vw;
+            height: 100vh;
+            background: radial-gradient(ellipse at top, rgba(203, 213, 225, 0.15) 0%, transparent 70%);
             z-index: -2;
-            filter: blur(10px);
+            pointer-events: none;
         }
-        .bg-stars {
+
+        /* 2. Delikatny, abstrakcyjny sierp księżyca */
+        .crescent {
             position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-image: 
-                radial-gradient(1.5px 1.5px at 15% 25%, #ffffff, transparent),
-                radial-gradient(2px 2px at 40% 15%, #e2e8f0, transparent),
-                radial-gradient(1px 1px at 75% 30%, #ffffff, transparent),
-                radial-gradient(2.5px 2.5px at 85% 70%, #cbd5e1, transparent),
-                radial-gradient(1.5px 1.5px at 20% 80%, #ffffff, transparent),
-                radial-gradient(1px 1px at 60% 90%, #e2e8f0, transparent),
-                radial-gradient(2px 2px at 10% 50%, #ffffff, transparent),
-                radial-gradient(1.5px 1.5px at 90% 10%, #ffffff, transparent);
-            background-repeat: repeat;
-            background-size: 250px 250px;
+            top: 10%;
+            right: -5%;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            /* Tworzenie sierpa za pomocą cienia wewnętrznego */
+            box-shadow: inset -40px 20px 0 0 rgba(203, 213, 225, 0.05);
+            filter: blur(3px);
             z-index: -1;
-            animation: twinkle 4s ease-in-out infinite alternate;
+            transform: rotate(-20deg);
+            pointer-events: none;
         }
-        /* ==================== */
+
+        /* =================================== */
 
         .container {
             max-width: 380px;
@@ -76,20 +68,16 @@
             z-index: 1;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(15px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes twinkle {
-            0% { opacity: 0.3; }
-            100% { opacity: 0.8; }
-        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
 
+        /* Biała obramówka (Polaroid) z księżycową poświatą */
         .polaroid {
             background: #ffffff;
             padding: 12px 12px 50px 12px;
             border-radius: 2px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7), 0 0 20px rgba(255, 255, 255, 0.1);
+            box-shadow: 
+                0 25px 50px rgba(0, 0, 0, 0.8), 
+                0 0 30px rgba(203, 213, 225, 0.15); /* Srebrna poświata */
             transform: rotate(-2deg);
             transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             margin-bottom: 35px;
@@ -109,6 +97,7 @@
             object-position: center 25%;
         }
 
+        /* Taśma klejąca */
         .polaroid::before {
             content: '';
             position: absolute;
@@ -131,7 +120,7 @@
             font-weight: 700;
             line-height: 1;
             margin-bottom: 5px;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9), 0 0 20px rgba(255, 255, 255, 0.2);
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9), 0 0 20px rgba(203, 213, 225, 0.3);
             transform: rotate(-1deg);
         }
 
@@ -163,14 +152,8 @@
         }
 
         .link-left { display: flex; align-items: center; gap: 15px; }
-        
         .link-item i.fa-brands { font-size: 1.5rem; color: #64748b; transition: all 0.3s ease; }
-        
-        .link-item:hover { 
-            border-bottom: 1.5px solid #ffffff; 
-            color: #ffffff;
-        }
-        
+        .link-item:hover { border-bottom: 1.5px solid #ffffff; color: #ffffff; }
         .link-item:hover i.fa-brands { color: #ffffff; }
         
         .arrow { font-size: 1rem; opacity: 0.5; transition: transform 0.3s ease, opacity 0.3s ease; }
@@ -215,7 +198,7 @@
             transform: translateX(-50%) translateY(150%);
             width: 90%;
             max-width: 380px;
-            background: rgba(15, 23, 42, 0.9);
+            background: rgba(15, 23, 42, 0.85);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -229,60 +212,23 @@
             gap: 15px;
         }
 
-        .cookie-banner.show {
-            transform: translateX(-50%) translateY(0);
-        }
-
-        .cookie-text {
-            color: #cbd5e1;
-            font-size: 0.85rem;
-            line-height: 1.5;
-            text-align: left;
-        }
-
-        .cookie-buttons {
-            display: flex;
-            gap: 10px;
-        }
-
+        .cookie-banner.show { transform: translateX(-50%) translateY(0); }
+        .cookie-text { color: #cbd5e1; font-size: 0.85rem; line-height: 1.5; text-align: left; }
+        .cookie-buttons { display: flex; gap: 10px; }
         .cookie-btn {
-            flex: 1;
-            padding: 10px;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-family: 'Nunito', sans-serif;
-            border: none;
+            flex: 1; padding: 10px; border-radius: 8px; font-weight: 600; font-size: 0.9rem;
+            cursor: pointer; transition: all 0.3s ease; font-family: 'Nunito', sans-serif; border: none;
         }
-
-        .cookie-accept {
-            background: #ffffff;
-            color: #0f172a;
-        }
-
-        .cookie-accept:hover {
-            background: #e2e8f0;
-        }
-
-        .cookie-decline {
-            background: rgba(255, 255, 255, 0.1);
-            color: #f8fafc;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .cookie-decline:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-        
+        .cookie-accept { background: #ffffff; color: #0f172a; }
+        .cookie-accept:hover { background: #e2e8f0; }
+        .cookie-decline { background: rgba(255, 255, 255, 0.1); color: #f8fafc; border: 1px solid rgba(255, 255, 255, 0.2); }
+        .cookie-decline:hover { background: rgba(255, 255, 255, 0.2); }
     </style>
 </head>
 <body>
 
-    <div class="bg-nebula"></div>
-    <div class="bg-moon"></div>
-    <div class="bg-stars"></div>
+    <div class="moon-glow"></div>
+    <div class="crescent"></div>
 
     <div class="container">
         <div class="polaroid">
@@ -315,11 +261,8 @@
 
     <div class="toast" id="toast"><i class="fa-solid fa-check"></i> Discord username copied!</div>
 
-    <!-- === BANER COOKIES (HTML) === -->
     <div class="cookie-banner" id="cookieBanner">
-        <div class="cookie-text">
-            Ta strona używa plików cookies, aby zapewnić Ci najlepsze doświadczenia. Kontynuując przeglądanie, zgadzasz się na ich użycie.
-        </div>
+        <div class="cookie-text">Ta strona używa plików cookies, aby zapewnić Ci najlepsze doświadczenia. Kontynuując przeglądanie, zgadzasz się na ich użycie.</div>
         <div class="cookie-buttons">
             <button class="cookie-btn cookie-decline" onclick="handleCookies('declined')">Odrzuć</button>
             <button class="cookie-btn cookie-accept" onclick="handleCookies('accepted')">Akceptuj</button>
@@ -327,37 +270,24 @@
     </div>
 
     <script>
-        // Skrypt do kopiowania Discorda
         function copyDiscord() {
             navigator.clipboard.writeText("adisbro.").then(() => {
                 const toast = document.getElementById("toast");
                 toast.classList.add("show");
                 setTimeout(() => { toast.classList.remove("show"); }, 2500);
-            }).catch(err => {
-                console.error('Copy error: ', err);
-            });
+            }).catch(err => { console.error('Copy error: ', err); });
         }
 
-        // === SKRYPT DO OBSŁUGI COOKIES ===
         document.addEventListener("DOMContentLoaded", () => {
             const cookieBanner = document.getElementById("cookieBanner");
-            const consent = localStorage.getItem("cookieConsent");
-
-            // Jeśli użytkownik nie podjął jeszcze decyzji, pokaż baner po krótkim opóźnieniu
-            if (!consent) {
-                setTimeout(() => {
-                    cookieBanner.classList.add("show");
-                }, 1000); // Pokazuje się 1 sekundę po załadowaniu strony
+            if (!localStorage.getItem("cookieConsent")) {
+                setTimeout(() => { cookieBanner.classList.add("show"); }, 1000); 
             }
         });
 
         function handleCookies(choice) {
-            // Zapisujemy wybór w przeglądarce
             localStorage.setItem("cookieConsent", choice);
-            
-            // Ukrywamy baner
-            const cookieBanner = document.getElementById("cookieBanner");
-            cookieBanner.classList.remove("show");
+            document.getElementById("cookieBanner").classList.remove("show");
         }
     </script>
 
