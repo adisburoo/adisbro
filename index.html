@@ -20,27 +20,31 @@
             padding: 30px 20px;
             font-family: 'Nunito', sans-serif;
             position: relative;
-            overflow-x: hidden;
+            overflow: hidden;
         }
 
+        /* Nowe, epickie tło księżycowe w 4K */
         .bg-image {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background-image: url('https://images.unsplash.com/photo-1522030299830-16b8d3d049fe?q=80&w=2560&auto=format&fit=crop');
+            background-image: url('https://images.unsplash.com/photo-1532767153582-b1a0e5145009?q=80&w=2560&auto=format&fit=crop');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
             z-index: -2;
-            filter: grayscale(80%) contrast(120%) brightness(0.8);
+            filter: grayscale(60%) contrast(120%) brightness(0.7);
+            /* Dodanie animacji przybliżania */
+            animation: slowZoom 30s ease-in-out infinite alternate;
         }
 
+        /* Winieta - przyciemnia boki i dół, rozjaśnia środek */
         .bg-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(
-                to bottom,
-                rgba(8, 10, 16, 0.5) 0%,
-                rgba(8, 10, 16, 0.85) 60%,
+            background: radial-gradient(
+                circle at center,
+                rgba(8, 10, 16, 0.4) 0%,
+                rgba(8, 10, 16, 0.8) 50%,
                 rgba(8, 10, 16, 0.95) 100%
             );
             z-index: -1;
@@ -60,6 +64,11 @@
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(15px); }
             to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slowZoom {
+            from { transform: scale(1); }
+            to { transform: scale(1.1); }
         }
 
         .polaroid {
@@ -194,7 +203,7 @@
 
     <div class="container">
         <div class="polaroid">
-            <!-- TUTAJ JEST KLUCZOWY ELEMENT. Plik musi nazywać się avatar.png i być wgrany na GitHuba -->
+            <!-- Upewnij się, że plik avatar.png jest wgrany na GitHub -->
             <img src="avatar.png" alt="adisbro">
         </div>
 
