@@ -12,6 +12,7 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body {
+            /* Głęboki, kosmiczny granat */
             background-color: #05070a;
             min-height: 100vh;
             display: flex;
@@ -23,30 +24,67 @@
             overflow: hidden;
         }
 
-        /* Wysokiej rozdzielczości tło (Kinowy Księżyc) */
-        .bg-image {
+        /* Warstwa 1: Mgławica i poświata */
+        .bg-nebula {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background-image: url('https://images.unsplash.com/photo-1532767153582-b1a0e5145009?q=80&w=2560&auto=format&fit=crop');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            z-index: -2;
-            filter: grayscale(70%) contrast(120%) brightness(0.65);
-            animation: slowZoom 30s ease-in-out infinite alternate;
+            background: 
+                radial-gradient(circle at 50% 10%, rgba(70, 90, 130, 0.3) 0%, transparent 60%),
+                radial-gradient(circle at 10% 90%, rgba(40, 50, 80, 0.4) 0%, transparent 50%),
+                radial-gradient(circle at 90% 80%, rgba(30, 40, 70, 0.3) 0%, transparent 50%);
+            z-index: -3;
         }
 
-        /* Przyciemnienie boczne, aby tekst był idealnie czytelny */
+        /* Warstwa 2: Duży, stylizowany Księżyc w tle */
+        .bg-moon {
+            position: fixed;
+            top: -10vh;
+            right: -10vw;
+            width: 60vw;
+            height: 60vw;
+            max-width: 600px;
+            max-height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, #e2e8f0 0%, #94a3b8 40%, #334155 80%, transparent 100%);
+            box-shadow: 
+                inset -20px -20px 50px rgba(0, 0, 0, 0.8),
+                0 0 100px rgba(148, 163, 184, 0.2),
+                0 0 150px rgba(148, 163, 184, 0.1);
+            z-index: -2;
+            opacity: 0.6;
+            filter: blur(2px);
+        }
+
+        /* Warstwa 3: Ostre gwiazdy */
+        .bg-stars {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: 
+                radial-gradient(1.5px 1.5px at 15% 25%, #ffffff, transparent),
+                radial-gradient(2px 2px at 40% 15%, #e2e8f0, transparent),
+                radial-gradient(1px 1px at 75% 30%, #ffffff, transparent),
+                radial-gradient(2px 2px at 85% 70%, #cbd5e1, transparent),
+                radial-gradient(1.5px 1.5px at 20% 80%, #ffffff, transparent),
+                radial-gradient(1px 1px at 60% 90%, #e2e8f0, transparent),
+                radial-gradient(2px 2px at 10% 50%, #ffffff, transparent),
+                radial-gradient(1.5px 1.5px at 90% 10%, #ffffff, transparent);
+            background-repeat: repeat;
+            background-size: 300px 300px;
+            z-index: -1;
+            animation: twinkle 4s ease-in-out infinite alternate;
+        }
+
+        /* Warstwa 4: Winieta przyciemniająca boki, by tekst był czytelny */
         .bg-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             background: radial-gradient(
                 circle at center,
-                rgba(8, 10, 16, 0.3) 0%,
-                rgba(8, 10, 16, 0.8) 60%,
-                rgba(8, 10, 16, 0.95) 100%
+                rgba(5, 7, 10, 0.2) 0%,
+                rgba(5, 7, 10, 0.8) 60%,
+                rgba(5, 7, 10, 0.95) 100%
             );
-            z-index: -1;
+            z-index: 0;
         }
 
         .container {
@@ -65,11 +103,12 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        @keyframes slowZoom {
-            from { transform: scale(1); }
-            to { transform: scale(1.1); }
+        @keyframes twinkle {
+            0% { opacity: 0.4; }
+            100% { opacity: 0.8; }
         }
 
+        /* Polaroid */
         .polaroid {
             background: #ffffff;
             padding: 15px 15px 45px 15px;
@@ -131,6 +170,7 @@
             text-shadow: 0 2px 5px rgba(0, 0, 0, 0.9);
         }
 
+        /* Links */
         .links { display: flex; flex-direction: column; gap: 20px; width: 100%; }
         
         .link-item {
@@ -197,12 +237,15 @@
 </head>
 <body>
 
-    <div class="bg-image"></div>
+    <!-- Nowe, w pełni wektorowe tło księżycowe -->
+    <div class="bg-nebula"></div>
+    <div class="bg-moon"></div>
+    <div class="bg-stars"></div>
     <div class="bg-overlay"></div>
 
     <div class="container">
         <div class="polaroid">
-            <!-- TUTAJ JEST TWOJE ZDJĘCIE. ABY DZIAŁAŁO, PLIK MUSI BYĆ NA GITHUBIE LUB MIEC LINK Z INTERNETU -->
+            <!-- Zdjęcie z zabezpieczeniem: jeśli plik nie zostanie znaleziony, wyświetli się zapasowe zdjęcie z internetu -->
             <img src="Screenshot_20261023-195055.png" alt="adisbro" onerror="this.src='https://i.ibb.co/3s6gZ9H/adisbro-avatar.jpg';">
         </div>
 
