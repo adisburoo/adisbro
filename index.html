@@ -5,14 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>adisbro</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Nunito:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body {
-            /* Głęboki, kosmiczny granat */
             background-color: #05070a;
             min-height: 100vh;
             display: flex;
@@ -24,7 +23,7 @@
             overflow: hidden;
         }
 
-        /* Warstwa 1: Delikatna mgławica w tle */
+        /* === TŁO KSĘŻYCOWE === */
         .bg-nebula {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -34,8 +33,6 @@
                 radial-gradient(circle at 90% 80%, rgba(40, 60, 100, 0.15) 0%, transparent 50%);
             z-index: -3;
         }
-
-        /* Warstwa 2: Świecący, księżycowy horyzont */
         .bg-moon {
             position: fixed;
             bottom: -20vh;
@@ -49,8 +46,6 @@
             z-index: -2;
             filter: blur(10px);
         }
-
-        /* Warstwa 3: Ostre gwiazdy (nieskończona rozdzielczość) */
         .bg-stars {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -68,8 +63,8 @@
             z-index: -1;
             animation: twinkle 4s ease-in-out infinite alternate;
         }
+        /* ==================== */
 
-        /* Kontener główny */
         .container {
             max-width: 380px;
             width: 100%;
@@ -85,20 +80,16 @@
             from { opacity: 0; transform: translateY(15px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
         @keyframes twinkle {
             0% { opacity: 0.3; }
             100% { opacity: 0.8; }
         }
 
-        /* Biała obramówka (Polaroid) */
         .polaroid {
-            background: #ffffff; /* Czysta biel */
-            padding: 12px 12px 50px 12px; /* Białe marginesy */
+            background: #ffffff;
+            padding: 12px 12px 50px 12px;
             border-radius: 2px;
-            box-shadow: 
-                0 20px 40px rgba(0, 0, 0, 0.7), 
-                0 0 20px rgba(255, 255, 255, 0.1); /* Delikatna poświata wokół ramki */
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7), 0 0 20px rgba(255, 255, 255, 0.1);
             transform: rotate(-2deg);
             transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             margin-bottom: 35px;
@@ -118,7 +109,6 @@
             object-position: center 25%;
         }
 
-        /* Efekt taśmy klejącej na górze */
         .polaroid::before {
             content: '';
             position: absolute;
@@ -134,7 +124,6 @@
             z-index: 2;
         }
 
-        /* Imię */
         .name {
             font-family: 'Caveat', cursive;
             color: #f8fafc;
@@ -156,7 +145,6 @@
             text-shadow: 0 2px 5px rgba(0, 0, 0, 0.9);
         }
 
-        /* Linki */
         .links { display: flex; flex-direction: column; gap: 20px; width: 100%; }
         
         .link-item {
@@ -188,7 +176,6 @@
         .arrow { font-size: 1rem; opacity: 0.5; transition: transform 0.3s ease, opacity 0.3s ease; }
         .link-item:hover .arrow { transform: translateX(6px); opacity: 1; color: #ffffff; }
 
-        /* Stopka */
         .footer-link {
             margin-top: 50px;
             color: #64748b;
@@ -202,7 +189,6 @@
         
         .footer-link:hover { color: #ffffff; }
 
-        /* Powiadomienie Toast */
         .toast {
             position: fixed;
             bottom: -60px;
@@ -220,27 +206,93 @@
         }
         
         .toast.show { bottom: 40px; }
+
+        /* === BANER COOKIES === */
+        .cookie-banner {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%) translateY(150%);
+            width: 90%;
+            max-width: 380px;
+            background: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .cookie-banner.show {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .cookie-text {
+            color: #cbd5e1;
+            font-size: 0.85rem;
+            line-height: 1.5;
+            text-align: left;
+        }
+
+        .cookie-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .cookie-btn {
+            flex: 1;
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Nunito', sans-serif;
+            border: none;
+        }
+
+        .cookie-accept {
+            background: #ffffff;
+            color: #0f172a;
+        }
+
+        .cookie-accept:hover {
+            background: #e2e8f0;
+        }
+
+        .cookie-decline {
+            background: rgba(255, 255, 255, 0.1);
+            color: #f8fafc;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .cookie-decline:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
         
     </style>
 </head>
 <body>
 
-    <!-- Tło księżycowe -->
     <div class="bg-nebula"></div>
     <div class="bg-moon"></div>
     <div class="bg-stars"></div>
 
     <div class="container">
         <div class="polaroid">
-            <!-- Zdjęcie z zabezpieczeniem: jeśli plik lokalny nie działa, wczyta to z serwera -->
-            <img src="https://i.ibb.co/3s6gZ9H/adisbro-avatar.jpg" alt="adisbro" onerror="this.src='https://i.ibb.co/3s6gZ9H/adisbro-avatar.jpg';">
+            <img src="https://i.ibb.co/3s6gZ9H/adisbro-avatar.jpg" alt="adisbro">
         </div>
 
         <h1 class="name">adisbro.</h1>
         <p class="bio">Content Creator</p>
 
         <div class="links">
-            <!-- TikTok -->
             <a href="https://www.tiktok.com/@adisburoo" target="_blank" class="link-item">
                 <div class="link-left">
                     <i class="fa-brands fa-tiktok"></i>
@@ -249,7 +301,6 @@
                 <i class="fa-solid fa-arrow-right arrow"></i>
             </a>
 
-            <!-- Discord -->
             <div class="link-item" onclick="copyDiscord()">
                 <div class="link-left">
                     <i class="fa-brands fa-discord"></i>
@@ -259,12 +310,24 @@
             </div>
         </div>
 
-        <a href="terms.html" class="footer-link">Terms of Service</a>
+        <a href="https://adisburoo.github.io/adisbro-terms.html/index.html" class="footer-link">Terms of Service</a>
     </div>
 
     <div class="toast" id="toast"><i class="fa-solid fa-check"></i> Discord username copied!</div>
 
+    <!-- === BANER COOKIES (HTML) === -->
+    <div class="cookie-banner" id="cookieBanner">
+        <div class="cookie-text">
+            Ta strona używa plików cookies, aby zapewnić Ci najlepsze doświadczenia. Kontynuując przeglądanie, zgadzasz się na ich użycie.
+        </div>
+        <div class="cookie-buttons">
+            <button class="cookie-btn cookie-decline" onclick="handleCookies('declined')">Odrzuć</button>
+            <button class="cookie-btn cookie-accept" onclick="handleCookies('accepted')">Akceptuj</button>
+        </div>
+    </div>
+
     <script>
+        // Skrypt do kopiowania Discorda
         function copyDiscord() {
             navigator.clipboard.writeText("adisbro.").then(() => {
                 const toast = document.getElementById("toast");
@@ -273,6 +336,28 @@
             }).catch(err => {
                 console.error('Copy error: ', err);
             });
+        }
+
+        // === SKRYPT DO OBSŁUGI COOKIES ===
+        document.addEventListener("DOMContentLoaded", () => {
+            const cookieBanner = document.getElementById("cookieBanner");
+            const consent = localStorage.getItem("cookieConsent");
+
+            // Jeśli użytkownik nie podjął jeszcze decyzji, pokaż baner po krótkim opóźnieniu
+            if (!consent) {
+                setTimeout(() => {
+                    cookieBanner.classList.add("show");
+                }, 1000); // Pokazuje się 1 sekundę po załadowaniu strony
+            }
+        });
+
+        function handleCookies(choice) {
+            // Zapisujemy wybór w przeglądarce
+            localStorage.setItem("cookieConsent", choice);
+            
+            // Ukrywamy baner
+            const cookieBanner = document.getElementById("cookieBanner");
+            cookieBanner.classList.remove("show");
         }
     </script>
 
