@@ -23,7 +23,7 @@
             overflow: hidden;
         }
 
-        /* === MOTYW KSĘŻYCOWY (Czysty CSS) === */
+        /* === MOTYW KSĘŻYCOWY === */
         .moon-glow {
             position: fixed;
             top: -20vh;
@@ -63,6 +63,7 @@
 
         @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
 
+        /* Biała obramówka (Polaroid) */
         .polaroid {
             background: #ffffff;
             padding: 12px 12px 50px 12px;
@@ -87,6 +88,7 @@
             object-position: center 25%;
         }
 
+        /* Taśma klejąca */
         .polaroid::before {
             content: '';
             position: absolute;
@@ -220,8 +222,10 @@
 
     <div class="container">
         <div class="polaroid">
-            <!-- ZDJĘCIE Z INTERNETU - ZADZIAŁA NA KAŻDYM TELEFONIE I KOMPUTERZE -->
-            <img src="https://i.ibb.co/3s6gZ9H/adisbro-avatar.jpg" alt="adisbro">
+            <!-- ZDJĘCIE Z INTERNETU (ImgBB) - GWARANTOWANE DZIAŁANIE -->
+            <img src="https://i.ibb.co/3s6gZ9H/adisbro-avatar.jpg" 
+                 alt="adisbro" 
+                 onerror="this.src='https://ui-avatars.com/api/?name=A&background=334155&color=fff&size=380';">
         </div>
 
         <h1 class="name">adisbro.</h1>
@@ -251,10 +255,10 @@
     <div class="toast" id="toast"><i class="fa-solid fa-check"></i> Discord username copied!</div>
 
     <div class="cookie-banner" id="cookieBanner">
-        <div class="cookie-text">Ta strona używa plików cookies, aby zapewnić Ci najlepsze doświadczenia. Kontynuując przeglądanie, zgadzasz się na ich użycie.</div>
+        <div class="cookie-text">This website uses cookies to ensure you get the best experience. By continuing to browse, you agree to their use.</div>
         <div class="cookie-buttons">
-            <button class="cookie-btn cookie-decline" onclick="handleCookies('declined')">Odrzuć</button>
-            <button class="cookie-btn cookie-accept" onclick="handleCookies('accepted')">Akceptuj</button>
+            <button class="cookie-btn cookie-decline" onclick="handleCookies('declined')">Decline</button>
+            <button class="cookie-btn cookie-accept" onclick="handleCookies('accepted')">Accept</button>
         </div>
     </div>
 
