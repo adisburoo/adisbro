@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>adisbro</title>
+    
+    <!-- Czcionki i ikony -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Nunito:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #141210; /* Ciemne, ciepłe tło */
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 30px 20px;
+            font-family: 'Nunito', sans-serif;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Efekt analogowego ziarna */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.05;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .container {
+            max-width: 380px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Ramka Polaroid */
+        .polaroid {
+            background: #f5f2eb;
+            padding: 15px 15px 40px 15px;
+            border-radius: 4px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4), 0 5px 15px rgba(0,0,0,0.2);
+            transform: rotate(-2deg);
+            transition: transform 0.4s ease;
+            margin-bottom: 30px;
+            width: 100%;
+            position: relative;
+        }
+
+        .polaroid:hover {
+            transform: rotate(0deg) scale(1.02);
+        }
+
+        .polaroid img {
+            width: 100%;
+            display: block;
+            border-radius: 2px;
+            border: 1px solid rgba(0,0,0,0.1);
+            background-color: #ddd; 
+            min-height: 200px; 
+        }
+
+        /* Taśma klejąca */
+        .polaroid::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%) rotate(2deg);
+            width: 80px;
+            height: 25px;
+            background: rgba(220, 220, 220, 0.4);
+            backdrop-filter: blur(2px);
+            border: 1px solid rgba(255,255,255,0.2);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        /* Napisy */
+        .name {
+            font-family: 'Caveat', cursive;
+            color: #f5f2eb;
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            transform: rotate(-1deg);
+        }
+
+        .bio {
+            color: #a8a29e;
+            font-size: 1rem;
+            margin-bottom: 35px;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+        }
+
+        /* Linki */
+        .links {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 100%;
+        }
+
+        .link-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            text-decoration: none;
+            color: #f5f2eb;
+            font-size: 1.1rem;
+            font-weight: 600;
+            padding: 12px 0;
+            border-bottom: 1px dashed rgba(245, 242, 235, 0.3);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .link-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .link-item i.fa-brands {
+            font-size: 1.4rem;
+            color: #a8a29e;
+            transition: color 0.3s ease;
+        }
+
+        .link-item:hover {
+            border-bottom: 1px solid #f5f2eb;
+        }
+
+        .link-item:hover i.fa-brands {
+            color: #f5f2eb;
+        }
+
+        .arrow {
+            font-size: 1rem;
+            opacity: 0.5;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .link-item:hover .arrow {
+            transform: translateX(5px);
+            opacity: 1;
+        }
+
+        .footer-link {
+            margin-top: 40px;
+            color: #57534e;
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: #a8a29e;
+        }
+
+        /* Powiadomienie */
+        .toast {
+            position: fixed;
+            bottom: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #f5f2eb;
+            color: #141210;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: bottom 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            z-index: 100;
+        }
+
+        .toast.show {
+            bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <!-- Zdjęcie w ramce -->
+        <div class="polaroid">
+            <!-- Nazwa pliku musi być dokładnie taka, jak w folderze! -->
+            <img src="Screenshot_20261023-161627.png" alt="adisbro">
+        </div>
+
+        <!-- Nick i opis -->
+        <h1 class="name">adisbro.</h1>
+        <p class="bio">Content Creator & Gamer</p>
+
+        <!-- Linki -->
+        <div class="links">
+            <!-- TikTok -->
+            <a href="https://www.tiktok.com/@adisburoo" target="_blank" class="link-item">
+                <div class="link-left">
+                    <i class="fa-brands fa-tiktok"></i>
+                    <span>TikTok</span>
+                </div>
+                <i class="fa-solid fa-arrow-right arrow"></i>
+            </a>
+
+            <!-- Discord (Kopiowanie) -->
+            <div class="link-item" onclick="copyDiscord()">
+                <div class="link-left">
+                    <i class="fa-brands fa-discord"></i>
+                    <span>Discord</span>
+                </div>
+                <i class="fa-regular fa-copy arrow"></i>
+            </div>
+        </div>
+
+        <!-- Regulamin -->
+        <a href="regulamin.html" class="footer-link">Terms of Service</a>
+    </div>
+
+    <!-- Powiadomienie -->
+    <div class="toast" id="toast">
+        Discord nick skopiowany!
+    </div>
+
+    <!-- Skrypt -->
+    <script>
+        function copyDiscord() {
+            navigator.clipboard.writeText("adisbro.").then(() => {
+                const toast = document.getElementById("toast");
+                toast.classList.add("show");
+                setTimeout(() => { toast.classList.remove("show"); }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>
