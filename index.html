@@ -23,7 +23,6 @@
             overflow-x: hidden;
         }
 
-        /* High-resolution lunar background */
         .bg-image {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -35,7 +34,6 @@
             filter: grayscale(80%) contrast(120%) brightness(0.8);
         }
 
-        /* Dark overlay for text readability */
         .bg-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -64,7 +62,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Polaroid */
         .polaroid {
             background: #ffffff;
             padding: 15px 15px 45px 15px;
@@ -85,14 +82,11 @@
             border-radius: 2px;
             border: 1px solid rgba(0,0,0,0.1);
             background-color: #ddd;
-            /* Zwiększamy wysokość zdjęcia, aby było bardziej portretowe */
             height: 380px;
-            /* Ustawiamy kadrowanie na twarz */
             object-fit: cover;
             object-position: center 25%;
         }
 
-        /* Tape */
         .polaroid::before {
             content: '';
             position: absolute;
@@ -108,7 +102,6 @@
             z-index: 2;
         }
 
-        /* Name */
         .name {
             font-family: 'Caveat', cursive;
             color: #f8fafc;
@@ -130,7 +123,6 @@
             text-shadow: 0 2px 5px rgba(0, 0, 0, 0.9);
         }
 
-        /* Links */
         .links { display: flex; flex-direction: column; gap: 20px; width: 100%; }
         
         .link-item {
@@ -157,14 +149,11 @@
             color: #ffffff;
         }
         
-        .link-item:hover i.fa-brands { 
-            color: #ffffff; 
-        }
+        .link-item:hover i.fa-brands { color: #ffffff; }
         
         .arrow { font-size: 1rem; opacity: 0.6; transition: transform 0.3s ease, opacity 0.3s ease; }
         .link-item:hover .arrow { transform: translateX(6px); opacity: 1; color: #ffffff; }
 
-        /* Footer */
         .footer-link {
             margin-top: 50px;
             color: #94a3b8;
@@ -178,7 +167,6 @@
         
         .footer-link:hover { color: #ffffff; }
 
-        /* Toast */
         .toast {
             position: fixed;
             bottom: -60px;
@@ -201,21 +189,19 @@
 </head>
 <body>
 
-    <!-- Lunar Background -->
     <div class="bg-image"></div>
     <div class="bg-overlay"></div>
 
     <div class="container">
         <div class="polaroid">
-            <!-- TUTAJ JEST ZMIANA: Podpięte zdjęcie z pliku lokalnego -->
-            <img src="profil.jpg" alt="adisbro profile picture">
+            <!-- TUTAJ ZMIENIONO NAZWĘ PLIKU NA DOKŁADNIE TAKĄ, JAK NA ZRZUCIE EKRANU -->
+            <img src="Screenshot_20261023-195055.png" alt="adisbro profile picture">
         </div>
 
         <h1 class="name">adisbro.</h1>
         <p class="bio">Content Creator</p>
 
         <div class="links">
-            <!-- TikTok Link -->
             <a href="https://www.tiktok.com/@adisburoo" target="_blank" class="link-item">
                 <div class="link-left">
                     <i class="fa-brands fa-tiktok"></i>
@@ -224,7 +210,6 @@
                 <i class="fa-solid fa-arrow-right arrow"></i>
             </a>
 
-            <!-- Discord Copy -->
             <div class="link-item" onclick="copyDiscord()">
                 <div class="link-left">
                     <i class="fa-brands fa-discord"></i>
@@ -234,11 +219,9 @@
             </div>
         </div>
 
-        <!-- Link pointing to the English terms page -->
         <a href="terms.html" class="footer-link">Terms of Service</a>
     </div>
 
-    <!-- Toast -->
     <div class="toast" id="toast"><i class="fa-solid fa-check"></i> Discord username copied!</div>
 
     <script>
