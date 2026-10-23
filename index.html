@@ -1,20 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="google" content="notranslate">
     <title>adisbro</title>
-    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Nunito:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        
         body {
-            background-color: #141210;
+            background-color: #05070a;
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -24,15 +22,34 @@
             position: relative;
             overflow-x: hidden;
         }
-        body::before {
-            content: "";
+
+        /* Fotorealistyczne, ostre tło księżycowe (Wysoka rozdzielczość) */
+        .bg-image {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-            opacity: 0.05;
-            pointer-events: none;
-            z-index: 10;
+            /* Zdjęcie powierzchni księżyca z Unsplash w jakości 4K */
+            background-image: url('https://images.unsplash.com/photo-1522030299830-16b8d3d049fe?q=80&w=2560&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            z-index: -2;
+            /* Lekki filtr, aby wyciągnąć chłodne, srebrne barwy */
+            filter: grayscale(80%) contrast(120%) brightness(0.8);
         }
+
+        /* Nakładka przyciemniająca, aby tekst był idealnie czytelny */
+        .bg-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(
+                to bottom,
+                rgba(8, 10, 16, 0.5) 0%,
+                rgba(8, 10, 16, 0.85) 60%,
+                rgba(8, 10, 16, 0.95) 100%
+            );
+            z-index: -1;
+        }
+
         .container {
             max-width: 380px;
             width: 100%;
@@ -40,118 +57,164 @@
             flex-direction: column;
             align-items: center;
             animation: fadeIn 1.5s ease-out;
+            position: relative;
+            z-index: 1;
         }
+
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
+            from { opacity: 0; transform: translateY(15px); }
             to { opacity: 1; transform: translateY(0); }
         }
+
+        /* Polaroid */
         .polaroid {
-            background: #f5f2eb;
-            padding: 15px 15px 40px 15px;
+            background: #ffffff;
+            padding: 15px 15px 45px 15px;
             border-radius: 4px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.4), 0 5px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8), 0 5px 15px rgba(0, 0, 0, 0.5);
             transform: rotate(-2deg);
-            transition: transform 0.4s ease;
-            margin-bottom: 30px;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            margin-bottom: 35px;
             width: 100%;
             position: relative;
         }
-        .polaroid:hover { transform: rotate(0deg) scale(1.02); }
+        
+        .polaroid:hover { transform: rotate(0deg) scale(1.03); }
+        
         .polaroid img {
             width: 100%;
             display: block;
             border-radius: 2px;
             border: 1px solid rgba(0,0,0,0.1);
-            background-color: #ddd; 
-            min-height: 200px; 
+            background-color: #ddd;
+            min-height: 200px;
+            object-fit: cover;
         }
+
+        /* Taśma klejąca */
         .polaroid::before {
             content: '';
             position: absolute;
-            top: -10px;
+            top: -12px;
             left: 50%;
             transform: translateX(-50%) rotate(2deg);
-            width: 80px;
-            height: 25px;
-            background: rgba(220, 220, 220, 0.4);
-            backdrop-filter: blur(2px);
-            border: 1px solid rgba(255,255,255,0.2);
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            width: 90px;
+            height: 28px;
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+            z-index: 2;
         }
+
+        /* Imię */
         .name {
             font-family: 'Caveat', cursive;
-            color: #f5f2eb;
-            font-size: 3.5rem;
+            color: #f8fafc;
+            font-size: 3.8rem;
             font-weight: 700;
             line-height: 1;
             margin-bottom: 5px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9);
             transform: rotate(-1deg);
         }
+
         .bio {
-            color: #a8a29e;
-            font-size: 1rem;
-            margin-bottom: 35px;
-            font-weight: 400;
-            letter-spacing: 0.5px;
+            color: #cbd5e1;
+            font-size: 1.05rem;
+            margin-bottom: 40px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.9);
         }
+
+        /* Linki */
         .links { display: flex; flex-direction: column; gap: 20px; width: 100%; }
+        
         .link-item {
             display: flex;
             align-items: center;
             justify-content: space-between;
             text-decoration: none;
-            color: #f5f2eb;
-            font-size: 1.1rem;
+            color: #f1f5f9;
+            font-size: 1.15rem;
             font-weight: 600;
-            padding: 12px 0;
-            border-bottom: 1px dashed rgba(245, 242, 235, 0.3);
+            padding: 12px 5px;
+            border-bottom: 1.5px dashed rgba(203, 213, 225, 0.4);
             transition: all 0.3s ease;
             cursor: pointer;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.8);
         }
+
         .link-left { display: flex; align-items: center; gap: 15px; }
-        .link-item i.fa-brands { font-size: 1.4rem; color: #a8a29e; transition: color 0.3s ease; }
-        .link-item:hover { border-bottom: 1px solid #f5f2eb; }
-        .link-item:hover i.fa-brands { color: #f5f2eb; }
-        .arrow { font-size: 1rem; opacity: 0.5; transition: transform 0.3s ease, opacity 0.3s ease; }
-        .link-item:hover .arrow { transform: translateX(5px); opacity: 1; }
+        
+        .link-item i.fa-brands { font-size: 1.5rem; color: #94a3b8; transition: all 0.3s ease; }
+        
+        .link-item:hover { 
+            border-bottom: 1.5px solid #ffffff; 
+            color: #ffffff;
+        }
+        
+        .link-item:hover i.fa-brands { 
+            color: #ffffff; 
+        }
+        
+        .arrow { font-size: 1rem; opacity: 0.6; transition: transform 0.3s ease, opacity 0.3s ease; }
+        .link-item:hover .arrow { transform: translateX(6px); opacity: 1; color: #ffffff; }
+
+        /* Stopka */
         .footer-link {
-            margin-top: 40px;
-            color: #57534e;
+            margin-top: 50px;
+            color: #94a3b8;
             text-decoration: none;
             font-size: 0.85rem;
+            font-weight: 600;
             transition: color 0.3s ease;
+            letter-spacing: 0.5px;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.8);
         }
-        .footer-link:hover { color: #a8a29e; }
+        
+        .footer-link:hover { color: #ffffff; }
+
+        /* Powiadomienie Toast */
         .toast {
             position: fixed;
-            bottom: -50px;
+            bottom: -60px;
             left: 50%;
             transform: translateX(-50%);
-            background: #f5f2eb;
-            color: #141210;
-            padding: 10px 20px;
+            background: #ffffff;
+            color: #0f172a;
+            padding: 12px 24px;
             border-radius: 4px;
-            font-weight: 600;
+            font-weight: 700;
             font-size: 0.9rem;
-            transition: bottom 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            transition: bottom 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.8);
             z-index: 100;
         }
-        .toast.show { bottom: 30px; }
+        
+        .toast.show { bottom: 40px; }
+        
     </style>
 </head>
 <body>
 
+    <!-- Prawdziwe, ostre tło księżyca -->
+    <div class="bg-image"></div>
+    <div class="bg-overlay"></div>
+
     <div class="container">
         <div class="polaroid">
-            <img src="Screenshot_20261023-161627.png" alt="adisbro">
+            <!-- Twoje zdjęcie -->
+            <img src="https://i.ibb.co/3s6gZ9H/adisbro-avatar.jpg" alt="adisbro">
         </div>
 
         <h1 class="name">adisbro.</h1>
-        <p class="bio">Content Creator & Gamer</p>
+        <p class="bio">Content Creator</p>
 
         <div class="links">
+            <!-- TikTok Link -->
             <a href="https://www.tiktok.com/@adisburoo" target="_blank" class="link-item">
                 <div class="link-left">
                     <i class="fa-brands fa-tiktok"></i>
@@ -160,6 +223,7 @@
                 <i class="fa-solid fa-arrow-right arrow"></i>
             </a>
 
+            <!-- Discord Copy -->
             <div class="link-item" onclick="copyDiscord()">
                 <div class="link-left">
                     <i class="fa-brands fa-discord"></i>
@@ -169,20 +233,23 @@
             </div>
         </div>
 
-        <!-- POPRAWIONY LINK DO REGULAMINU -->
         <a href="https://adisburoo.github.io/adisbro-regulamin.html" target="_blank" class="footer-link">Terms of Service</a>
     </div>
 
-    <div class="toast" id="toast">Discord nick skopiowany!</div>
+    <!-- Toast -->
+    <div class="toast" id="toast"><i class="fa-solid fa-check"></i> Nick Discord skopiowany!</div>
 
     <script>
         function copyDiscord() {
             navigator.clipboard.writeText("adisbro.").then(() => {
                 const toast = document.getElementById("toast");
                 toast.classList.add("show");
-                setTimeout(() => { toast.classList.remove("show"); }, 2000);
+                setTimeout(() => { toast.classList.remove("show"); }, 2500);
+            }).catch(err => {
+                console.error('Błąd kopiowania: ', err);
             });
         }
     </script>
+
 </body>
 </html>
