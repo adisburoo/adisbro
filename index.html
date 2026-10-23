@@ -6,21 +6,15 @@
     <meta name="google" content="notranslate">
     <title>adisbro</title>
     
-    <!-- Czcionki i ikony -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Nunito:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            background-color: #141210; /* Ciemne, ciepłe tło */
+            background-color: #141210;
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -30,8 +24,6 @@
             position: relative;
             overflow-x: hidden;
         }
-
-        /* Efekt analogowego ziarna */
         body::before {
             content: "";
             position: fixed;
@@ -41,7 +33,6 @@
             pointer-events: none;
             z-index: 10;
         }
-
         .container {
             max-width: 380px;
             width: 100%;
@@ -50,13 +41,10 @@
             align-items: center;
             animation: fadeIn 1.5s ease-out;
         }
-
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
-        /* Ramka Polaroid */
         .polaroid {
             background: #f5f2eb;
             padding: 15px 15px 40px 15px;
@@ -68,11 +56,7 @@
             width: 100%;
             position: relative;
         }
-
-        .polaroid:hover {
-            transform: rotate(0deg) scale(1.02);
-        }
-
+        .polaroid:hover { transform: rotate(0deg) scale(1.02); }
         .polaroid img {
             width: 100%;
             display: block;
@@ -81,8 +65,6 @@
             background-color: #ddd; 
             min-height: 200px; 
         }
-
-        /* Taśma klejąca */
         .polaroid::before {
             content: '';
             position: absolute;
@@ -96,8 +78,6 @@
             border: 1px solid rgba(255,255,255,0.2);
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
-
-        /* Napisy */
         .name {
             font-family: 'Caveat', cursive;
             color: #f5f2eb;
@@ -108,7 +88,6 @@
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
             transform: rotate(-1deg);
         }
-
         .bio {
             color: #a8a29e;
             font-size: 1rem;
@@ -116,15 +95,7 @@
             font-weight: 400;
             letter-spacing: 0.5px;
         }
-
-        /* Linki */
-        .links {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            width: 100%;
-        }
-
+        .links { display: flex; flex-direction: column; gap: 20px; width: 100%; }
         .link-item {
             display: flex;
             align-items: center;
@@ -138,38 +109,12 @@
             transition: all 0.3s ease;
             cursor: pointer;
         }
-
-        .link-left {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .link-item i.fa-brands {
-            font-size: 1.4rem;
-            color: #a8a29e;
-            transition: color 0.3s ease;
-        }
-
-        .link-item:hover {
-            border-bottom: 1px solid #f5f2eb;
-        }
-
-        .link-item:hover i.fa-brands {
-            color: #f5f2eb;
-        }
-
-        .arrow {
-            font-size: 1rem;
-            opacity: 0.5;
-            transition: transform 0.3s ease, opacity 0.3s ease;
-        }
-
-        .link-item:hover .arrow {
-            transform: translateX(5px);
-            opacity: 1;
-        }
-
+        .link-left { display: flex; align-items: center; gap: 15px; }
+        .link-item i.fa-brands { font-size: 1.4rem; color: #a8a29e; transition: color 0.3s ease; }
+        .link-item:hover { border-bottom: 1px solid #f5f2eb; }
+        .link-item:hover i.fa-brands { color: #f5f2eb; }
+        .arrow { font-size: 1rem; opacity: 0.5; transition: transform 0.3s ease, opacity 0.3s ease; }
+        .link-item:hover .arrow { transform: translateX(5px); opacity: 1; }
         .footer-link {
             margin-top: 40px;
             color: #57534e;
@@ -177,12 +122,7 @@
             font-size: 0.85rem;
             transition: color 0.3s ease;
         }
-
-        .footer-link:hover {
-            color: #a8a29e;
-        }
-
-        /* Powiadomienie */
+        .footer-link:hover { color: #a8a29e; }
         .toast {
             position: fixed;
             bottom: -50px;
@@ -198,29 +138,20 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.5);
             z-index: 100;
         }
-
-        .toast.show {
-            bottom: 30px;
-        }
+        .toast.show { bottom: 30px; }
     </style>
 </head>
 <body>
 
     <div class="container">
-        
-        <!-- Zdjęcie w ramce -->
         <div class="polaroid">
-            <!-- Upewnij się, że zdjęcie jest w tym samym folderze na GitHubie! -->
             <img src="Screenshot_20261023-161627.png" alt="adisbro">
         </div>
 
-        <!-- Nick i opis -->
         <h1 class="name">adisbro.</h1>
         <p class="bio">Content Creator & Gamer</p>
 
-        <!-- Linki -->
         <div class="links">
-            <!-- TikTok -->
             <a href="https://www.tiktok.com/@adisburoo" target="_blank" class="link-item">
                 <div class="link-left">
                     <i class="fa-brands fa-tiktok"></i>
@@ -229,7 +160,6 @@
                 <i class="fa-solid fa-arrow-right arrow"></i>
             </a>
 
-            <!-- Discord (Kopiowanie) -->
             <div class="link-item" onclick="copyDiscord()">
                 <div class="link-left">
                     <i class="fa-brands fa-discord"></i>
@@ -239,16 +169,12 @@
             </div>
         </div>
 
-        <!-- POPRAWIONY ADRES DO REGULAMINU ZNAJDUJE SIĘ TUTAJ -->
+        <!-- POPRAWIONY LINK DO REGULAMINU -->
         <a href="https://adisburoo.github.io/adisbro-regulamin.html" target="_blank" class="footer-link">Terms of Service</a>
     </div>
 
-    <!-- Powiadomienie -->
-    <div class="toast" id="toast">
-        Discord nick skopiowany!
-    </div>
+    <div class="toast" id="toast">Discord nick skopiowany!</div>
 
-    <!-- Skrypt kopiujący Discord -->
     <script>
         function copyDiscord() {
             navigator.clipboard.writeText("adisbro.").then(() => {
