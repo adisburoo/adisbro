@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google" content="notranslate">
-    <title>adisbro</title>
+    <title>Terms of Service | adisbro</title>
     
-    <!-- Czcionki i ikony -->
+    <!-- Te same czcionki co na stronie głównej -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Nunito:wght@400;600&display=swap" rel="stylesheet">
@@ -20,7 +20,7 @@
         }
 
         body {
-            background-color: #141210; /* Ciemne, ciepłe tło */
+            background-color: #141210; /* Ciemne tło z głównej */
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -31,7 +31,7 @@
             overflow-x: hidden;
         }
 
-        /* Efekt analogowego ziarna */
+        /* Ten sam efekt analogowego ziarna */
         body::before {
             content: "";
             position: fixed;
@@ -42,221 +42,128 @@
             z-index: 10;
         }
 
-        .container {
-            max-width: 380px;
+        /* Kartka papieru (podobna do ramki Polaroid) */
+        .paper {
+            background: #f5f2eb; /* Kolor papieru */
             width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            animation: fadeIn 1.5s ease-out;
+            max-width: 420px;
+            padding: 40px 30px;
+            border-radius: 4px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4), 0 5px 15px rgba(0,0,0,0.2);
+            transform: rotate(1deg); /* Lekki obrót dla efektu naturalności */
+            position: relative;
+            animation: fadeIn 1s ease-out;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from { opacity: 0; transform: translateY(10px) rotate(1deg); }
+            to { opacity: 1; transform: translateY(0) rotate(1deg); }
         }
 
-        /* Ramka Polaroid */
-        .polaroid {
-            background: #f5f2eb;
-            padding: 15px 15px 40px 15px;
-            border-radius: 4px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.4), 0 5px 15px rgba(0,0,0,0.2);
-            transform: rotate(-2deg);
-            transition: transform 0.4s ease;
-            margin-bottom: 30px;
-            width: 100%;
-            position: relative;
-        }
-
-        .polaroid:hover {
-            transform: rotate(0deg) scale(1.02);
-        }
-
-        .polaroid img {
-            width: 100%;
-            display: block;
-            border-radius: 2px;
-            border: 1px solid rgba(0,0,0,0.1);
-            background-color: #ddd; 
-            min-height: 200px; 
-        }
-
-        /* Taśma klejąca */
-        .polaroid::before {
+        /* Taśma klejąca na górze */
+        .paper::before {
             content: '';
             position: absolute;
             top: -10px;
             left: 50%;
-            transform: translateX(-50%) rotate(2deg);
-            width: 80px;
+            transform: translateX(-50%) rotate(-2deg);
+            width: 90px;
             height: 25px;
-            background: rgba(220, 220, 220, 0.4);
+            background: rgba(220, 220, 220, 0.6);
             backdrop-filter: blur(2px);
-            border: 1px solid rgba(255,255,255,0.2);
+            border: 1px solid rgba(255,255,255,0.3);
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
-        /* Napisy */
-        .name {
+        /* Odręczny nagłówek */
+        h1 {
             font-family: 'Caveat', cursive;
-            color: #f5f2eb;
+            color: #141210;
             font-size: 3.5rem;
             font-weight: 700;
-            line-height: 1;
+            text-align: center;
             margin-bottom: 5px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            line-height: 1;
             transform: rotate(-1deg);
         }
 
-        .bio {
-            color: #a8a29e;
-            font-size: 1rem;
-            margin-bottom: 35px;
-            font-weight: 400;
-            letter-spacing: 0.5px;
+        .last-updated {
+            text-align: center;
+            color: #78716c;
+            font-size: 0.85rem;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed rgba(20, 18, 16, 0.2); /* Ciemna linia */
         }
 
-        /* Linki */
-        .links {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            width: 100%;
+        h2 {
+            color: #141210;
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-top: 25px;
+            margin-bottom: 10px;
         }
 
-        .link-item {
+        p {
+            color: #44403c;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        /* Przycisk powrotu (w stylu głównym) */
+        .back-btn {
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 16px;
+            margin-top: 35px;
+            border-radius: 8px;
             text-decoration: none;
-            color: #f5f2eb;
             font-size: 1.1rem;
             font-weight: 600;
-            padding: 12px 0;
-            border-bottom: 1px dashed rgba(245, 242, 235, 0.3);
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .link-left {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .link-item i.fa-brands {
-            font-size: 1.4rem;
-            color: #a8a29e;
-            transition: color 0.3s ease;
-        }
-
-        .link-item:hover {
-            border-bottom: 1px solid #f5f2eb;
-        }
-
-        .link-item:hover i.fa-brands {
             color: #f5f2eb;
+            background: #141210;
+            transition: all 0.3s ease;
         }
 
-        .arrow {
-            font-size: 1rem;
-            opacity: 0.5;
-            transition: transform 0.3s ease, opacity 0.3s ease;
-        }
-
-        .link-item:hover .arrow {
-            transform: translateX(5px);
-            opacity: 1;
-        }
-
-        .footer-link {
-            margin-top: 40px;
-            color: #57534e;
-            text-decoration: none;
-            font-size: 0.85rem;
-            transition: color 0.3s ease;
-        }
-
-        .footer-link:hover {
-            color: #a8a29e;
-        }
-
-        /* Powiadomienie */
-        .toast {
-            position: fixed;
-            bottom: -50px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #f5f2eb;
-            color: #141210;
-            padding: 10px 20px;
-            border-radius: 4px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            transition: bottom 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-            z-index: 100;
-        }
-
-        .toast.show {
-            bottom: 30px;
+        .back-btn:hover {
+            background: #2a2622;
+            transform: scale(1.02);
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        
-        <!-- Zdjęcie w ramce -->
-        <div class="polaroid">
-            <!-- Pamiętaj, aby to zdjęcie było wgranego do tego samego folderu na GitHubie! -->
-            <img src="Screenshot_20261023-161627.png" alt="adisbro">
-        </div>
+    <div class="paper">
+        <h1>Terms of Service</h1>
+        <div class="last-updated">Last updated: October 2026</div>
 
-        <!-- Nick i opis -->
-        <h1 class="name">adisbro.</h1>
-        <p class="bio">Content Creator & Gamer</p>
+        <p>Welcome to my official profile page. By accessing or using this website, you agree to comply with and be bound by the following terms and conditions.</p>
 
-        <!-- Linki -->
-        <div class="links">
-            <!-- TikTok -->
-            <a href="https://www.tiktok.com/@adisburoo" target="_blank" class="link-item">
-                <div class="link-left">
-                    <i class="fa-brands fa-tiktok"></i>
-                    <span>TikTok</span>
-                </div>
-                <i class="fa-solid fa-arrow-right arrow"></i>
-            </a>
+        <h2>1. General Rules</h2>
+        <p>This website serves as a central hub for my social media profiles. Please be respectful when interacting with me or my community on any of the linked platforms.</p>
 
-            <!-- Discord (Kopiowanie) -->
-            <div class="link-item" onclick="copyDiscord()">
-                <div class="link-left">
-                    <i class="fa-brands fa-discord"></i>
-                    <span>Discord</span>
-                </div>
-                <i class="fa-regular fa-copy arrow"></i>
-            </div>
-        </div>
+        <h2>2. Intellectual Property</h2>
+        <p>All content on this site, including but not limited to the artwork, design, and text, is the property of the site owner unless otherwise stated. You may not reproduce, distribute, or use any content without explicit permission.</p>
 
-        <!-- ZAKTUALIZOWANY LINK DO REGULAMINU -->
-        <a href="https://adisburoo.github.io/regulamin/index.html" target="_blank" class="footer-link">Terms of Service</a>
+        <h2>3. External Links</h2>
+        <p>This site contains links to external websites (TikTok, Discord). I am not responsible for the content or privacy practices of these third-party platforms.</p>
+
+        <h2>4. Modifications</h2>
+        <p>I reserve the right to modify these terms at any time. Any changes will be effective immediately upon posting to this page.</p>
+
+        <h2>5. Contact</h2>
+        <p>If you have any questions about these Terms, please reach out to me on Discord.</p>
+
+        <!-- Inteligentny przycisk powrotu (zabiera użytkownika tam, skąd przyszedł) -->
+        <a href="javascript:history.back()" class="back-btn">
+            <i class="fa-solid fa-arrow-left"></i>
+            Back to Profile
+        </a>
     </div>
 
-    <!-- Powiadomienie -->
-    <div class="toast" id="toast">
-        Discord nick skopiowany!
-    </div>
-
-    <!-- Skrypt kopiujący Discord -->
-    <script>
-        function copyDiscord() {
-            navigator.clipboard.writeText("adisbro.").then(() => {
-                const toast = document.getElementById("toast");
-                toast.classList.add("show");
-                setTimeout(() => { toast.classList.remove("show"); }, 2000);
-            });
-        }
-    </script>
 </body>
 </html>
