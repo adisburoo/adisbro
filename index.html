@@ -23,7 +23,7 @@
             overflow: hidden;
         }
 
-        /* Kinowe, zapętlone tło księżycowe */
+        /* Wysokiej rozdzielczości tło (Kinowy Księżyc) */
         .bg-image {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -32,17 +32,18 @@
             background-position: center;
             background-attachment: fixed;
             z-index: -2;
-            filter: grayscale(60%) contrast(120%) brightness(0.7);
+            filter: grayscale(70%) contrast(120%) brightness(0.65);
             animation: slowZoom 30s ease-in-out infinite alternate;
         }
 
+        /* Przyciemnienie boczne, aby tekst był idealnie czytelny */
         .bg-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             background: radial-gradient(
                 circle at center,
-                rgba(8, 10, 16, 0.4) 0%,
-                rgba(8, 10, 16, 0.8) 50%,
+                rgba(8, 10, 16, 0.3) 0%,
+                rgba(8, 10, 16, 0.8) 60%,
                 rgba(8, 10, 16, 0.95) 100%
             );
             z-index: -1;
@@ -201,8 +202,8 @@
 
     <div class="container">
         <div class="polaroid">
-            <!-- NAZWA PLIKU JEST DOKŁADNIE TAKA, JAK NA TWOIM ZRZUCIE EKRANU -->
-            <img src="Screenshot_20261023-195055.png" alt="adisbro">
+            <!-- TUTAJ JEST TWOJE ZDJĘCIE. ABY DZIAŁAŁO, PLIK MUSI BYĆ NA GITHUBIE LUB MIEC LINK Z INTERNETU -->
+            <img src="Screenshot_20261023-195055.png" alt="adisbro" onerror="this.src='https://i.ibb.co/3s6gZ9H/adisbro-avatar.jpg';">
         </div>
 
         <h1 class="name">adisbro.</h1>
