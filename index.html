@@ -142,8 +142,9 @@
 
         .link-left { display: flex; align-items: center; gap: 15px; }
         .link-item i.fa-brands { font-size: 1.5rem; color: #64748b; transition: all 0.3s ease; }
+        .link-item i.fa-solid { font-size: 1.5rem; color: #64748b; transition: all 0.3s ease; }
         .link-item:hover { border-bottom: 1.5px solid #ffffff; color: #ffffff; }
-        .link-item:hover i.fa-brands { color: #ffffff; }
+        .link-item:hover i { color: #ffffff; }
         
         .arrow { font-size: 1rem; opacity: 0.5; transition: transform 0.3s ease, opacity 0.3s ease; }
         .link-item:hover .arrow { transform: translateX(6px); opacity: 1; color: #ffffff; }
@@ -220,7 +221,7 @@
 
     <div class="container">
         <div class="polaroid">
-            <!-- TWÓJ LINK Z POSTIMAGES. JEŚLI SIĘ NIE WCZYTA, POKAŻE SIĘ AWATAR Z LITERKĄ "A" -->
+            <!-- Zdjęcie profilowe -->
             <img src="https://i.postimg.cc/Gm9yPX9F/Screenshot-20261023-195055.png" 
                  alt="adisbro"
                  onerror="this.src='https://ui-avatars.com/api/?name=A&background=334155&color=fff&size=380&font-size=0.33';">
@@ -230,6 +231,7 @@
         <p class="bio">Content Creator</p>
 
         <div class="links">
+            <!-- TikTok -->
             <a href="https://www.tiktok.com/@adisburoo" target="_blank" class="link-item">
                 <div class="link-left">
                     <i class="fa-brands fa-tiktok"></i>
@@ -238,6 +240,7 @@
                 <i class="fa-solid fa-arrow-right arrow"></i>
             </a>
 
+            <!-- Discord (Kopiowanie nicku) -->
             <div class="link-item" onclick="copyDiscord()">
                 <div class="link-left">
                     <i class="fa-brands fa-discord"></i>
@@ -245,6 +248,15 @@
                 </div>
                 <i class="fa-regular fa-copy arrow"></i>
             </div>
+
+            <!-- NOWY: Grupa Discord -->
+            <a href="https://discord.gg/dCKAJtepC" target="_blank" class="link-item">
+                <div class="link-left">
+                    <i class="fa-solid fa-users"></i>
+                    <span>Discord Group</span>
+                </div>
+                <i class="fa-solid fa-arrow-right arrow"></i>
+            </a>
         </div>
 
         <a href="https://adisburoo.github.io/adisbro-terms.html/index.html" class="footer-link">Terms of Service</a>
